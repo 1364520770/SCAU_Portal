@@ -36,7 +36,10 @@ window.SCAU_DATA = {
     // 各系统自己的 service 值（已实测）
     services: {
       portal: 'https://portal.scau.edu.cn/shiro-cas',
+      ehall: 'https://service.scau.edu.cn/sso',
       jwnew: 'https://jwzf.scau.edu.cn/sso/lyiotlogin',
+      lib: 'https://unified-auth.chaoxing.com/login_auth/v2/cas/scau/index',
+      electric: 'http://cz.scau.edu.cn/caslogin/login',
       // WebVPN 首页自身会跳到 CAS，service 是固定的（2026-09-20 实测）
       vpn: 'https://vpn.scau.edu.cn:443/passport/v1/auth/cas'
     }
@@ -61,6 +64,7 @@ window.SCAU_DATA = {
     {
       id: 'ehall', name: '办事大厅（一网通办）', cat: 'study',
       url: 'https://service.scau.edu.cn/',
+      casService: 'https://service.scau.edu.cn/sso',
       desc: '线上办事：各类证明申请、审批流转、学生事务办理',
       keywords: 'banshi dating 一网通办 服务大厅 证明 申请 审批',
       tags: ['需登录'], status: 'ok'
@@ -97,6 +101,7 @@ window.SCAU_DATA = {
     {
       id: 'lib', name: '图书馆', cat: 'study',
       url: 'https://lib.scau.edu.cn/',
+      casService: 'https://unified-auth.chaoxing.com/login_auth/v2/cas/scau/index',
       desc: '借阅查询与续借、电子数据库、座位与研讨间预约',
       keywords: 'tushuguan library 借书 续借 知网 数据库 座位预约',
       tags: ['需登录'], status: 'ok'
@@ -134,6 +139,7 @@ window.SCAU_DATA = {
     {
       id: 'electric', name: '智能电表充值平台', cat: 'life',
       url: 'http://cz.scau.edu.cn/mobile/index.html',
+      casService: 'http://cz.scau.edu.cn/caslogin/login',
       desc: '宿舍智能电表查询与充值，支持统一认证或微信扫码登录',
       keywords: 'zhineng dianbiao cz dianfei 电费 电表 电量 充值 宿舍缴费',
       tags: ['需登录', '手机友好'], status: 'ok'
