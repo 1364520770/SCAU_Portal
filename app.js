@@ -126,8 +126,8 @@
   (function initTheme() {
     var saved = null;
     try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
-    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+    // 首次访问固定使用亮色主题；用户主动切换后的选择仍会保留。
+    applyTheme(saved || 'light');
   })();
 
   $('#btn-theme').addEventListener('click', function () {
