@@ -112,7 +112,6 @@ code {
   background: linear-gradient(100deg, var(--brand), var(--pink));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.hero-sub { margin: 0 0 20px; color: var(--muted); font-size: 14.5px; max-width: 620px; }
 
 .search {
   display: flex; align-items: center; gap: 10px;
