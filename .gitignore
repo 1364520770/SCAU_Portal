@@ -1,0 +1,8 @@
+# 小程序的机器密钥 / 生成的链接缓存，都不要提交
+server/url-links.config.json
+server/.url-links.cache.json
+
+# 系统垃圾文件
+Thumbs.db
+desktop.ini
+.DS_Store

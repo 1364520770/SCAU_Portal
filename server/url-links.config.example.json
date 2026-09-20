@@ -1,0 +1,33 @@
+{
+  "_说明": "这是模板。复制成 url-links.config.json 再填。AppSecret 是小程序的机器密钥，等于密码，别提交到 GitHub、别发给别人。",
+  "expireDays": 30,
+  "miniprograms": [
+    {
+      "id": "mp-zijing-chuxing",
+      "name": "紫荆出行",
+      "appid": "",
+      "secret": "",
+      "path": "",
+      "query": "",
+      "env_version": "release"
+    },
+    {
+      "id": "mp-huanxi-youni",
+      "name": "欢洗有你",
+      "appid": "",
+      "secret": "",
+      "path": "",
+      "query": "",
+      "env_version": "release"
+    },
+    {
+      "id": "mp-zijing-ecard",
+      "name": "紫荆e卡",
+      "appid": "",
+      "secret": "",
+      "path": "",
+      "query": "",
+      "env_version": "release"
+    }
+  ]
+}

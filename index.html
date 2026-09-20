@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>华农入口导航 · 华南农业大学实用网站与小程序</title>
+<meta name="description" content="华南农业大学学生常用网站、系统与微信小程序导航：融合门户、教务系统、图书馆、WebVPN、缴费、就业等常用入口。">
+<meta name="theme-color" content="#00693e">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="./" aria-label="华南农业大学入口导航（个人整理，非官方站点）">
+      <img class="brand-logo brand-logo-green" src="assets/logo-scau-green.svg" alt="华南农业大学" width="357" height="95">
+      <img class="brand-logo brand-logo-white" src="assets/logo-scau.svg" alt="" aria-hidden="true" width="357" height="95">
+      <span class="brand-tag">入口导航</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn fav-btn" id="btn-favs" type="button" title="我的收藏" aria-label="打开我的收藏" aria-haspopup="dialog" aria-controls="modal">
+        <span aria-hidden="true">★</span><span class="fav-count" id="fav-count" hidden>0</span>
+      </button>
+      <button class="icon-btn" id="btn-theme" title="切换深浅色">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>华农入口导航</h1>
+      <p class="hero-sub">把华南农业大学要用的网站、系统和小程序，放进一个页面里。数据在 <code>data.js</code>，随时自己加。</p>
+
+      <div class="search" role="search">
+        <span class="search-ico" aria-hidden="true">🔍</span>
+        <input id="q" type="search" autocomplete="off" placeholder="搜名称、用途或拼音缩写，例如 教务 / jwxt / 成绩" aria-label="搜索入口">
+        <button id="btn-clear" class="clear-btn" hidden>清空</button>
+      </div>
+
+      <div class="quick" id="quick" aria-label="高频入口"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <nav class="filters" id="filters" aria-label="分类筛选"></nav>
+
+    <section class="sso" id="sso">
+      <div class="sso-head">
+        <span class="sso-ico">🔐</span>
+        <div class="sso-txt">
+          <h2>统一身份认证 · 登一次就够</h2>
+          <p>华农的教务、门户、办事大厅都接在同一个统一认证平台（<code>cas.scau.edu.cn</code>）上。在这里登录一次，之后点带「统一认证」标签的系统，浏览器会带着通行证自动放行，不用再输密码。</p>
+        </div>
+      </div>
+
+      <div class="sso-actions">
+        <a class="sso-btn primary" id="sso-login" target="_blank" rel="noopener">🔐 去统一认证登录</a>
+        <button class="sso-btn" id="sso-toggle" type="button">我已登录</button>
+      </div>
+      <p class="sso-state" id="sso-state"></p>
+
+      <details class="sso-why">
+        <summary>为什么不在这个页面上直接输账号密码？</summary>
+        <div class="sso-why-body">
+          <p><b>1. 技术上做不到。</b>「免登录」靠的是浏览器在 <code>cas.scau.edu.cn</code> 上的一张会话 cookie（CASTGC）。cookie 只属于它自己的域名——本站不在 <code>scau.edu.cn</code> 这个域下，既读不到也写不了。所以在本站输入密码，学校里任何一个系统都不会认账。</p>
+          <p><b>2. 每个系统都要单独登记。</b>统一认证只会把登录票据发给登记过的系统（<code>service</code> 白名单）。本站不在名单里，就算拿到票据也换不到任何系统的登录态。</p>
+          <p><b>3. 更像钓鱼，而且真的危险。</b>一个让人在非 <code>scau.edu.cn</code> 页面输入校园账号密码的网站，具备钓鱼站的全部特征：密码要经过第三方服务器，也无法保证不被记录。哪怕你自己是善意的，也不该做这样的页面——出事时你说不清，同学也分不清。</p>
+          <p><b>所以正确的「免登录」是这样的：</b>本站只负责把你送到学校自己的登录页（<code>cas.scau.edu.cn</code>），<b>密码永远只输在学校域名下</b>；登录成功后浏览器拿到通行证，后面所有接了统一认证的系统都会自动放行。本站做的是<b>导航 + 状态提示</b>，不是代理登录。</p>
+        </div>
+      </details>
+    </section>
+    <section class="block" id="mp-block" hidden>
+      <header class="block-head">
+        <h2><span class="block-ico">📱</span>常用微信小程序<span class="mp-status" id="mp-status"></span></h2>
+        <p class="block-desc">用的是微信官方的 <b>URL Link</b> 方案：配好直达链接后，手机上点「打开小程序」会唤起微信直接进入。链接来自小程序方，没配的条目可以先「复制名称」去微信搜。</p>
+      </header>
+      <div class="grid" id="mp-grid"></div>
+    </section>
+
+    <section class="block" id="site-block">
+      <header class="block-head">
+        <h2><span class="block-ico">🔗</span>网站与系统</h2>
+        <p class="block-desc">带「需登录」的用融合门户账号登录；不在校园网打不开时，先连 <a href="https://vpn.scau.edu.cn/" target="_blank" rel="noopener">WebVPN</a>。</p>
+      </header>
+      <div class="grid" id="site-grid"></div>
+    </section>
+
+    <p class="empty" id="empty" hidden>没找到匹配的入口，换个关键词试试 🌾</p>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>数据核实日期：<span id="updated">—</span>　·　本站为个人整理的学生向导航，非学校官方站点，链接与办事流程请以学校官方发布为准。</p>
+    <p class="foot-tip">添加/修改入口：编辑 <code>data.js</code> 即可，无需改页面代码。</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-mask" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="小程序码">
+    <button class="modal-x" data-close aria-label="关闭">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="data.js"></script>
+<!-- 微信 URL Link（B 方案）生成结果；未生成时是空对象，不影响页面 -->
+<script src="data/url-links.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+
