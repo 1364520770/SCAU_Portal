@@ -148,13 +148,13 @@
   /* ---------------- 分类筛选 ---------------- */
   function renderFilters() {
     var items = [{ id: 'all', name: '全部', icon: '✦' }]
-      .concat(CATS.map(function (c) { return { id: c.id, name: c.name, icon: c.icon }; }));
-    if (MPS.length) items.push({ id: 'mp', name: '小程序', icon: '📱' });
+      .concat(CATS.map(function (c) { return { id: c.id, name: c.name }; }));
+    if (MPS.length) items.push({ id: 'mp', name: '小程序' });
 
     $('#filters').innerHTML = items.map(function (c) {
       var sel = state.cat === c.id;
       return '<button class="chip" role="tab" aria-selected="' + sel + '" data-cat="' + esc(c.id) + '">' +
-        c.icon + ' ' + esc(c.name) + '</button>';
+        (c.icon ? c.icon + ' ' : '') + esc(c.name) + '</button>';
     }).join('');
 
     $all('#filters .chip').forEach(function (btn) {
@@ -193,7 +193,6 @@
     return '<article class="card" data-id="' + esc(s.id) + '">' +
       '<button class="star" data-star="' + esc(s.id) + '" aria-pressed="' + isFav(s.id) + '" aria-label="收藏 ' + esc(s.name) + '" title="收藏">' + (isFav(s.id) ? '★' : '☆') + '</button>' +
       '<div class="card-top">' +
-        '<span class="card-ico">' + (ICONS[s.id] || CAT_ICON[s.cat] || '🔗') + '</span>' +
         '<div>' +
           '<h3 class="card-title"><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a></h3>' +
           '<p class="card-desc">' + esc(s.desc) + '</p>' +
@@ -241,7 +240,6 @@
     return '<article class="card mp" data-id="' + esc(m.id) + '">' +
       '<button class="star" data-star="' + esc(m.id) + '" aria-pressed="' + isFav(m.id) + '" aria-label="收藏 ' + esc(m.name) + '" title="收藏">' + (isFav(m.id) ? '★' : '☆') + '</button>' +
       '<div class="card-top">' +
-        '<span class="card-ico">📱</span>' +
         '<div>' +
           '<h3 class="card-title">' + esc(m.name) + '</h3>' +
           '<p class="card-desc">' + esc(m.desc || '') + '</p>' +
