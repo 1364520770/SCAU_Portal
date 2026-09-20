@@ -132,6 +132,13 @@ window.SCAU_DATA = {
       tags: ['需登录'], status: 'ok'
     },
     {
+      id: 'electric', name: '智能电表充值平台', cat: 'life',
+      url: 'http://cz.scau.edu.cn/mobile/index.html',
+      desc: '宿舍智能电表查询与充值，支持统一认证或微信扫码登录',
+      keywords: 'zhineng dianbiao cz dianfei 电费 电表 电量 充值 宿舍缴费',
+      tags: ['需登录', '手机友好'], status: 'ok'
+    },
+    {
       id: 'job', name: '就业创业信息网', cat: 'life',
       url: 'https://jyzx.scau.edu.cn/',
       desc: '招聘信息、宣讲会、双选会、就业手续与三方协议',
